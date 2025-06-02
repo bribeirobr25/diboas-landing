@@ -3,182 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="diBoaS - Your Journey to Wealth Begins with Endless Possibilities.">
+    <meta name="description" content="diBoaS - Your Journey to Wealth Begins with Endless Possibilities. A platform uniting TradFi and DeFi for seamless financial growth.">
+    <meta name="keywords" content="diBoaS, TradFi, DeFi, crypto, investment, wealth building, SocialFi">
+    <meta name="author" content="diBoaS Team">
+    <meta property="og:title" content="diBoaS - Your Journey to Wealth Begins">
+    <meta property="og:description" content="Unite TradFi and DeFi with diBoaS for seamless financial growth.">
+    <meta property="og:url" content="https://diboas.com">
+    <meta property="og:type" content="website">
     <title>diBoaS - Your Journey to Wealth Begins</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap">
     <style>
+        /* CSS Variables */
+        :root {
+            --finance-green: #2E7D32;
+            --finance-light-green: #C8E6C9;
+            --primary-blue: #2563EB;
+            --emerald-green: #10B981;
+            --soft-white: #FAFAFA;
+            --warm-gray: #E5E7EB;
+            --text-primary: #111827;
+            --text-secondary: #6B7280;
+            --background: var(--soft-white);
+            --card-background: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.03);
+            --text-on-primary: #FFFFFF;
+            --font-family: 'Inter', sans-serif;
+            --font-size-body: 18px;
+            --font-size-label: 14px;
+            --font-size-header: 24px;
+        }
+
+        :root.dark-mode {
+            --finance-green: #4CAF50;
+            --finance-light-green: #A5D6A7;
+            --primary-blue: #3B82F6;
+            --emerald-green: #34D399;
+            --soft-white: #1F2937;
+            --warm-gray: #4B5563;
+            --text-primary: #F3F4F6;
+            --text-secondary: #9CA3AF;
+            --background: #1F2937;
+            --card-background: #374151;
+            --shadow: rgba(255, 255, 255, 0.05);
+            --text-on-primary: #1F2937;
+        }
+
+        /* Reset */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
 
         body {
+            font-family: var(--font-family);
+            background-color: var(--background);
+            color: var(--text-primary);
+            font-size: var(--font-size-body);
             line-height: 1.6;
-            color: #333;
-            background-color: #f4f7fa;
+            overflow-x: hidden;
         }
 
-        header {
-            background: linear-gradient(90deg, #007bff, #0056b3);
-            color: white;
-            text-align: center;
-            padding: 2rem 1rem;
+        /* Top Bar */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-background);
+            padding: 12px 16px;
+            z-index: 1000;
+            box-shadow: 0 1px 2px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 60px;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .top-bar__logo h1 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--finance-green);
         }
 
-        header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
+        .top-bar__nav {
+            display: flex;
+            gap: 12px;
         }
 
-        nav {
-            background: #fff;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 1rem;
-            text-align: center;
-        }
-
-        nav a {
-            color: #007bff;
+        .top-bar__nav a {
+            padding: 8px 16px;
+            color: var(--text-primary);
             text-decoration: none;
-            margin: 0 1rem;
-            font-weight: bold;
-            transition: color 0.3s;
+            font-size: var(--font-size-label);
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.2s ease, color 0.2s ease;
         }
 
-        nav a:hover {
-            color: #0056b3;
+        .top-bar__nav a.functional {
+            background-color: var(--finance-green);
+            color: var(--text-on-primary);
         }
 
-        .mocked {
+        .top-bar__nav a.functional:hover,
+        .top-bar__nav a.functional:focus {
+            background-color: #1B5E20;
+        }
+
+        .top-bar__nav a.mocked {
+            background-color: var(--warm-gray);
+            color: var(--text-secondary);
             cursor: not-allowed;
-            opacity: 0.6;
+            position: relative;
         }
 
-        .mocked:hover::after {
-            content: " (Mocked - Not Functional)";
-            font-size: 0.8rem;
-            color: #ff4444;
-            margin-left: 0.5rem;
+        .top-bar__nav a.mocked:hover::after {
+            content: "Mocked - Not Functional";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card-background);
+            color: #EF4444;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 1000;
+            white-space: nowrap;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        /* Main Content */
+        .main-content {
+            margin-top: 60px;
+            padding: 24px 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            min-height: calc(100vh - 60px);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .page-header h2 {
+            font-size: 32px;
+            font-weight: 600;
+            color: var(--finance-green);
+        }
+
+        .page-header p {
+            font-size: var(--font-size-body);
+            color: var(--text-secondary);
         }
 
         section {
-            margin-bottom: 3rem;
+            margin-bottom: 32px;
+            background-color: var(--card-background);
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: 0 1px 2px var(--shadow);
         }
 
         section h2 {
-            font-size: 2rem;
-            color: #007bff;
-            margin-bottom: 1rem;
+            font-size: var(--font-size-header);
+            font-weight: 600;
+            color: var(--finance-green);
+            margin-bottom: 16px;
         }
 
-        section p, section li {
-            font-size: 1.1rem;
-            margin-bottom: 0.8rem;
+        section p,
+        section li {
+            font-size: var(--font-size-label);
+            color: var(--text-secondary);
+            margin-bottom: 8px;
         }
 
-        ul {
-            list-style: disc;
-            padding-left: 2rem;
+        section ul {
+            list-style: none;
+            padding-left: 16px;
+        }
+
+        section ul li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--finance-green);
         }
 
         .cta-buttons {
             text-align: center;
-            margin: 2rem 0;
+            margin: 32px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
         }
 
         .cta-buttons a {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            margin: 0.5rem;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: var(--font-size-label);
+            font-weight: 600;
             text-decoration: none;
-            font-weight: bold;
-            transition: background 0.3s, transform 0.2s;
+            transition: background-color 0.2s ease, transform 0.2s ease;
         }
 
         .cta-buttons a.functional {
-            background: #007bff;
-            color: white;
+            background-color: var(--finance-green);
+            color: var(--text-on-primary);
         }
 
-        .cta-buttons a.functional:hover {
-            background: #0056b3;
+        .cta-buttons a.functional:hover,
+        .cta-buttons a.functional:focus {
+            background-color: #1B5E20;
             transform: scale(1.05);
         }
 
         .cta-buttons a.mocked {
-            background: #ccc;
-            color: #666;
+            background-color: var(--warm-gray);
+            color: var(--text-secondary);
+            cursor: not-allowed;
+            position: relative;
+        }
+
+        .cta-buttons a.mocked:hover::after {
+            content: "Mocked - Not Functional";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--card-background);
+            color: #EF4444;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            z-index: 1000;
+            white-space: nowrap;
         }
 
         footer {
-            background: #333;
-            color: white;
+            background-color: var(--card-background);
+            color: var(--text-secondary);
             text-align: center;
-            padding: 1rem;
-            position: relative;
-            bottom: 0;
-            width: 100%;
+            padding: 16px;
+            box-shadow: 0 -1px 2px var(--shadow);
         }
 
+        footer p {
+            font-size: var(--font-size-label);
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
+            .top-bar {
+                padding: 8px 12px;
+                flex-direction: column;
+                height: auto;
+                gap: 8px;
             }
 
-            header p {
-                font-size: 1rem;
+            .top-bar__nav {
+                flex-wrap: wrap;
+                justify-content: center;
             }
 
-            nav a {
-                display: block;
-                margin: 0.5rem 0;
+            .top-bar__nav a {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .main-content {
+                padding: 16px;
+            }
+
+            .page-header h2 {
+                font-size: 24px;
+            }
+
+            .page-header p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 12px;
             }
 
             section h2 {
-                font-size: 1.5rem;
+                font-size: 20px;
             }
 
-            section p, section li {
-                font-size: 1rem;
+            section p,
+            section li {
+                font-size: 14px;
             }
 
             .cta-buttons a {
-                display: block;
-                width: 80%;
-                margin: 0.5rem auto;
+                width: 100%;
+                text-align: center;
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar__logo h1 {
+                font-size: 18px;
+            }
+
+            .top-bar__nav a {
+                font-size: 11px;
+                padding: 6px 10px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>diBoaS</h1>
-        <p>Your Journey to Wealth Begins with Endless Possibilities</p>
+    <header class="top-bar">
+        <a href="/" class="top-bar__logo">
+            <h1>diBoaS</h1>
+        </a>
+        <nav class="top-bar__nav">
+            <a href="#" class="mocked">Home</a>
+            <a href="https://diboas.com/docs" class="functional" target="_blank">Documentation</a>
+            <a href="#" class="mocked">Features</a>
+            <a href="#" class="mocked">About</a>
+            <a href="mailto:hello@diboas.com?subject=Investor Inquiry" class="functional">Become an Investor</a>
+            <a href="https://x.com/diboa_socialfi" class="functional" target="_blank">Go to X</a>
+        </nav>
     </header>
 
-    <nav>
-        <a href="#" class="mocked">Home</a>
-        <a href="https://diboas.com/docs" class="functional" target="_blank">Documentation</a>
-        <a href="#" class="mocked">Features</a>
-        <a href="#" class="mocked">About</a>
-        <a href="mailto:invest@diboas.com?subject=Investor Inquiry" class="functional">Become an Investor</a>
-        <a href="https://x.com" class="functional" target="_blank">Go to X</a>
-    </nav>
+    <main class="main-content">
+        <div class="page-header">
+            <h2>diBoaS</h2>
+            <p>Your Journey to Wealth Begins with Endless Possibilities</p>
+        </div>
 
-    <div class="container">
         <section id="introduction">
             <h2>Introduction</h2>
             <p><strong>Project Name:</strong> diBoaS (“dee-boas”)</p>
@@ -199,22 +364,22 @@
         <section id="pain-points">
             <h2>Pain Points</h2>
             <ul>
-                <li><strong>Lack of Financial Investment Knowledge:</strong> Many users are comfortable with traditional payments but find financial investment (crypto or not) complex and intimidating.</li>
-                <li><strong>Fear of Security Risks:</strong> Users worry about losing funds due to financial market volatility and complexity or platform vulnerabilities.</li>
-                <li><strong>Hidden Fees and Complexity:</strong> Opaque fee structures lead to sticker shock and transaction abandonment.</li>
-                <li><strong>Fragmented Financial Tools:</strong> Users lack a single platform to manage both traditional and decentralized finance, limiting accessibility and growth opportunities.</li>
-                <li><strong>Credit Bureaucracy and High Interest Rates:</strong> Retail and small/medium institutional users seeking credit face high interest rates and complex bureaucracy.</li>
-                <li><strong>Risk and Difficulty in Finding the Best Opportunities:</strong> Retail users and business investors/owners struggle to find low-risk, high-fit opportunities.</li>
+                <li>Lack of Financial Investment Knowledge: Many users are comfortable with traditional payments but find financial investment (crypto or not) complex and intimidating.</li>
+                <li>Fear of Security Risks: Users worry about losing funds due to financial market volatility and complexity or platform vulnerabilities.</li>
+                <li>Hidden Fees and Complexity: Opaque fee structures lead to sticker shock and transaction abandonment.</li>
+                <li>Fragmented Financial Tools: Users lack a single platform to manage both traditional and decentralized finance, limiting accessibility and growth opportunities.</li>
+                <li>Credit Bureaucracy and High Interest Rates: Retail and small/medium institutional users seeking credit face high interest rates and complex bureaucracy.</li>
+                <li>Risk and Difficulty in Finding the Best Opportunities: Retail users and business investors/owners struggle to find low-risk, high-fit opportunities.</li>
             </ul>
         </section>
 
         <section id="solutions">
             <h2>Solutions</h2>
             <ul>
-                <li><strong>Simplified Onboarding:</strong> 1-Click transactions (deposit, buy, sell, swap, transfer, withdraw) via familiar payment methods (bank, card, Apple Pay, PayPal) in Phase 1, with tutorials to guide novices.</li>
-                <li><strong>Robust Security:</strong> Custodial diBoaS Wallet (powered by trusted vendors/partners) abstracts complexity, with TOTP 2FA and compliance (EU MiCA, US BSA).</li>
-                <li><strong>Transparent Fees:</strong> Low fees (0.09% for most transactions, 0.9% for withdrawals) with clear, itemized breakdowns before confirmation.</li>
-                <li><strong>Unified Ecosystem:</strong> A single platform integrating TradFi and DeFi, evolving from crypto rails (Phase 1) to curated investments (Phase 2), community curation (Phase 3), and a venture center (Phase 7), offering endless possibilities for all users.</li>
+                <li>Simplified Onboarding: 1-Click transactions (deposit, buy, sell, swap, transfer, withdraw) via familiar payment methods (bank, card, Apple Pay, PayPal) in Phase 1, with tutorials to guide novices.</li>
+                <li>Robust Security: Custodial diBoaS Wallet (powered by trusted vendors/partners) abstracts complexity, with TOTP 2FA and compliance (EU MiCA, US BSA).</li>
+                <li>Transparent Fees: Low fees (0.09% for most transactions, 0.9% for withdrawals) with clear, itemized breakdowns before confirmation.</li>
+                <li>Unified Ecosystem: A single platform integrating TradFi and DeFi, evolving from crypto rails (Phase 1) to curated investments (Phase 2), community curation (Phase 3), and a venture center (Phase 7), offering endless possibilities for all users.</li>
             </ul>
         </section>
 
@@ -231,24 +396,24 @@
         <section id="competitive-differentiators">
             <h2>Competitive Differentiators</h2>
             <ul>
-                <li><strong>Seamless Access:</strong> 1-Click transactions and investments, familiar payment methods (bank, PayPal, Apple Pay), and beginner-friendly tutorials simplify onboarding for novices and institutions.</li>
-                <li><strong>Trusted Community:</strong> Peer-to-peer content curation with reputation badges, votes, and endorsements ensures reliable insights, addressing security and trust concerns.</li>
-                <li><strong>Rewarding Monetization:</strong> Users earn through tips, memberships, and content sales (Phase 4), plus gamified rewards (points, cashback, leaderboards in Phase 5), driving engagement.</li>
-                <li><strong>All-in-One Ecosystem:</strong> Integrates TradFi/DeFi, SwapHub, and venture center, unlike fragmented competitors.</li>
+                <li>Seamless Access: 1-Click transactions and investments, familiar payment methods (bank, PayPal, Apple Pay), and beginner-friendly tutorials simplify onboarding for novices and institutions.</li>
+                <li>Trusted Community: Peer-to-peer content curation with reputation badges, votes, and endorsements ensures reliable insights, addressing security and trust concerns.</li>
+                <li>Rewarding Monetization: Users earn through tips, memberships, and content sales (Phase 4), plus gamified rewards (points, cashback, leaderboards in Phase 5), driving engagement.</li>
+                <li>All-in-One Ecosystem: Integrates TradFi/DeFi, SwapHub, and venture center, unlike fragmented competitors.</li>
             </ul>
         </section>
 
         <div class="cta-buttons">
             <a href="#" class="mocked">Sign Up Now</a>
             <a href="https://diboas.com/docs" class="functional" target="_blank">Read Documentation</a>
-            <a href="mailto:invest@diboas.com?subject=Investor Inquiry" class="functional">Become an Investor</a>
-            <a href="https://x.com" class="functional" target="_blank">Follow on X</a>
+            <a href="mailto:hello@diboas.com?subject=Investor Inquiry" class="functional">Become an Investor</a>
+            <a href="https://x.com/diboa_socialfi" class="functional" target="_blank">Follow on X</a>
             <a href="#" class="mocked">Explore Features</a>
         </div>
-    </div>
+    </main>
 
     <footer>
-        <p>&copy; 2025 diBoaS. All rights reserved.</p>
+        <p>© 2025 diBoaS. All rights reserved.</p>
     </footer>
 </body>
 </html>
